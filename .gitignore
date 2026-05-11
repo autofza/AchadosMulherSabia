@@ -3,7 +3,12 @@
 /node_modules
 /public/build
 /public/hot
-/public/uploads
+/public/uploads/*
+!/public/uploads/imgSem.jpg
+!/public/uploads/imgBlogs/
+!/public/uploads/imgBlogs/**
+!/public/uploads/imgCompanies/
+!/public/uploads/imgCompanies/**
 /storage/*.key
 /storage/logs
 /uploads
