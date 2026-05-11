@@ -31,6 +31,9 @@ WORKDIR /var/www
 
 COPY . .
 
+RUN mkdir -p /var/www/public_uploads_seed \
+    && cp -R public/uploads/imgBlogs public/uploads/imgCompanies public/uploads/imgSem.jpg /var/www/public_uploads_seed/
+
 RUN composer install --no-dev --optimize-autoloader
 
 RUN npm install

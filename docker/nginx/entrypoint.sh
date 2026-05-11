@@ -4,11 +4,24 @@ set -e
 cd /var/www
 
 # Garante que a pasta de uploads existe no volume
-mkdir -p public/uploads/imgProducts
+mkdir -p public/uploads/imgProducts public/uploads/imgBlogs public/uploads/imgCompanies
+
+# Popula o volume de uploads com imagens publicas versionadas na imagem Docker
+if [ -d /var/www/public_uploads_seed/imgBlogs ]; then
+    cp -rn /var/www/public_uploads_seed/imgBlogs/. public/uploads/imgBlogs/
+fi
+
+if [ -d /var/www/public_uploads_seed/imgCompanies ]; then
+    cp -rn /var/www/public_uploads_seed/imgCompanies/. public/uploads/imgCompanies/
+fi
 
 # Garante que a imagem padrao existe no volume caso o volume esteja vazio
 if [ ! -f public/uploads/imgSem.jpg ]; then
-    cp public/favicon.png public/uploads/imgSem.jpg
+    if [ -f /var/www/public_uploads_seed/imgSem.jpg ]; then
+        cp /var/www/public_uploads_seed/imgSem.jpg public/uploads/imgSem.jpg
+    else
+        cp public/favicon.png public/uploads/imgSem.jpg
+    fi
 fi
 
 chmod -R 777 public/uploads
