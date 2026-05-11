@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
-    libzip-dev
+    libzip-dev \
+    nodejs \
+    npm
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
@@ -30,5 +32,11 @@ WORKDIR /var/www
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
+
+RUN npm install
+RUN npm run build
+
+RUN mkdir -p storage/logs bootstrap/cache \
+    && chmod -R 777 storage bootstrap/cache
 
 CMD php artisan serve --host=0.0.0.0 --port=80
