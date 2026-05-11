@@ -3,6 +3,7 @@
 /node_modules
 /public/build
 /public/hot
+/public/uploads
 /storage/*.key
 /storage/logs
 /uploads
