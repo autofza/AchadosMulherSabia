@@ -39,4 +39,6 @@ RUN npm run build
 RUN mkdir -p storage/logs bootstrap/cache \
     && chmod -R 777 storage bootstrap/cache
 
-CMD php artisan serve --host=0.0.0.0 --port=80
+RUN chmod +x docker/nginx/entrypoint.sh
+
+CMD ["bash", "docker/nginx/entrypoint.sh"]
