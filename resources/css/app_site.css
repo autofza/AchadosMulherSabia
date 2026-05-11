@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ... seu código anterior ... */
+
+@layer utilities {
+  .text-transparent {
+    color: transparent;
+  }
+
+  .bg-clip-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+}
+
+/* Scrollbar escondido */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* ... restante ... */
+
+@layer components {
+
+  /* Botões */
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors;
+  }
+
+  .btn-success {
+    @apply px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors;
+  }
+
+  /* Alertas */
+  .alert-success {
+    @apply p-4 mb-4 text-green-800 rounded-lg bg-green-200;
+  }
+
+  .alert-error {
+    @apply p-4 mb-4 text-red-800 rounded-lg bg-red-200;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white shadow-md rounded-lg p-6 relative overflow-hidden transition-transform duration-300;
+  }
+
+  /* Neon hover */
+  .neon-glow {
+    @apply transition-transform duration-300 hover:scale-105 shadow-lg;
+  }
+
+  /* Reflexo nos cards */
+  .card-reflection {
+    @apply absolute bottom-0 left-0 w-full h-2 rounded-b-xl opacity-30 blur-md;
+  }
+
+  /* Glow pulsante nos botões/cards */
+  .animate-glow {
+    animation: glow 1.5s infinite;
+  }
+
+  /* Gradiente animado de fundo */
+  .animate-neon-gradient {
+    background: linear-gradient(270deg, #facc15, #f472b6, #a78bfa, #facc15, #f472b6);
+    background-size: 600% 600%;
+    animation: neon-gradient 8s ease infinite;
+    opacity: 0.2;
+  }
+}
+
+/* Scrollbar escondido */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Keyframes para glow pulsante */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 6px #facc15; }
+  50% { box-shadow: 0 0 14px #f59e0b; }
+}
+
+/* Keyframes para gradiente animado */
+@keyframes neon-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+

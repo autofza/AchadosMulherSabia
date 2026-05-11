@@ -1,0 +1,33 @@
+services:
+
+  app:
+    build: .
+    container_name: achados_app
+
+    working_dir: /var/www
+
+    volumes:
+      - ./:/var/www
+
+    networks:
+      - achados
+
+  nginx:
+    image: nginx:latest
+    container_name: achados_nginx
+
+    ports:
+      - "8000:80"
+
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+
+    depends_on:
+      - app
+
+    networks:
+      - achados
+
+networks:
+  achados:
